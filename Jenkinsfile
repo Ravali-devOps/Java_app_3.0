@@ -69,6 +69,15 @@ pipeline{
             steps{
                script{
                    
+                   curl -u admin:Ravali@2893 -X POST "http://34.201.43.219/:8081/artifactory/api/copy/libs-release-local/path/to/artifact_artifact_kubernetes-configmap-reload_0.0.1-SNAPSHOT.jar?to=/libs-snapshot-local/path/to/artifact_artifact_kubernetes-configmap-reload_0.0.1-SNAPSHOT.jar"
+               }
+            }
+        }
+         stage('JFrog: Artifacts'){
+         when { expression {  params.action == 'create' } }
+            steps{
+               script{
+                   
                    mvnBuild()
                }
             }
